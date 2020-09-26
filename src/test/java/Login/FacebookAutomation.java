@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FacebookAutomation {
     private WebDriver driver;
-    public void setUp(){
+    public void setUp() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
 
@@ -28,15 +28,16 @@ public class FacebookAutomation {
 
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]")).click();
 
+        Thread.sleep(10000);
+
+        //Close window
+        driver.quit();
+
     }
     //Close the browser after
-    public static void main(String args[]){
+    public static void main(String args[]) throws InterruptedException {
         FacebookAutomation test = new FacebookAutomation();
         test.setUp();
     }
 
-    public void setDriver(WebDriver driver){
-        this.driver = driver;
-        driver.quit();
-    }
 }
